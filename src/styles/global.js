@@ -11,6 +11,8 @@ const GlobalStyles = createGlobalStyle`
         --grayColor: #ABB4BD;
         --starColor: #FFBA49;
 
+        --cardShadow: 0px 2px 15px 1px rgba(0, 0, 0, 0.25);
+
         --robotoFont: 'Roboto', sans-serif;
     }
 
@@ -25,6 +27,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         background: var(--backgroundColor);
         color: var(--whiteColor);
+        letter-spacing: 0.02em;
     }
 `;
 
