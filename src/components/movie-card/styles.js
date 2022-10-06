@@ -2,6 +2,7 @@ import styled from "styled-components";
 import avengersPoster from '../../assets/posters/avengers-endgame-poster.png'
 
 export const CardContainer = styled.div`
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -17,16 +18,6 @@ export const CardContainer = styled.div`
     box-shadow: var(--cardShadow);
     cursor: pointer;
     transition: 300ms;
-
-    &::before {
-        content: "";
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        top: -50%;
-        left: -50%;
-        z-index: -1;
-    }
 
     &:hover {
         transition: 300ms;
@@ -54,6 +45,11 @@ export const CardInfoContainer = styled.div`
 
 export const MovieTitle = styled.h6`
     font-size: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 `
 
 export const MovieGenre = styled.span`

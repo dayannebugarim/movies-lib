@@ -1,18 +1,31 @@
 import { CardContainer, CardInfoContainer, MovieTitle, MovieGenre, RatingContainer, Star, Rating } from './styles'
 import star from '../../assets/icons/star.svg'
 import { imgURL } from "../../services/api";
+import { useState } from 'react';
 
-export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPath }) {
+export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPath, setOpenDetails, movieGenreIds, genres }) {
+    //const [genreNames, setGenreNames] = useState([])
+    
+    const genresArr = [];
+
+    movieGenreIds.map(movieGenre => {
+        //console.log(movieGenre)
+        const teste = genres?.filter(genre => genre.id === movieGenre )
+        genresArr.push(teste[0]?.name)
+    })
+
+    //console.log(genresArr)
+    
     
     return (
         <>
-            <CardContainer posterURL={imgURL + moviePosterPath}>
+            <CardContainer onClick={() => setOpenDetails(true)} posterURL={imgURL + moviePosterPath}>
                 <CardInfoContainer>
                     <MovieTitle>
                         {movieTitle}
                     </MovieTitle>
                     <MovieGenre>
-                        Suspense/Terror
+                        {`${genresArr.slice(0, 2)}`}
                     </MovieGenre>
                     <RatingContainer>
                         <Star src={star} />

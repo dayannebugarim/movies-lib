@@ -24,10 +24,15 @@ const GlobalStyles = createGlobalStyle`
         font-size: 1rem;
     }
 
+    .App {
+        max-width: 100vw;
+    }
+
     body {
         background: var(--backgroundColor);
         color: var(--whiteColor);
         letter-spacing: 0.02em;
+        overflow-x: hidden;
     }
 `;
 
