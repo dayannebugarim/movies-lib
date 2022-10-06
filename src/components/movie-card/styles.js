@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
     width: 300px;
     background-color: var(--darkColor);
     border-radius: 20px;
-    background-image: url(${avengersPoster});
+    background-image: url(${props => props.posterURL});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

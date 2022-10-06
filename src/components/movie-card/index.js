@@ -1,20 +1,22 @@
 import { CardContainer, CardInfoContainer, MovieTitle, MovieGenre, RatingContainer, Star, Rating } from './styles'
 import star from '../../assets/icons/star.svg'
+import { imgURL } from "../../services/api";
 
-export default function MovieCard() {
+export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPath }) {
+    
     return (
         <>
-            <CardContainer>
+            <CardContainer posterURL={imgURL + moviePosterPath}>
                 <CardInfoContainer>
                     <MovieTitle>
-                        Avengers: Endgame
+                        {movieTitle}
                     </MovieTitle>
                     <MovieGenre>
                         Suspense/Terror
                     </MovieGenre>
                     <RatingContainer>
                         <Star src={star} />
-                        <Rating>6.7</Rating>
+                        <Rating>{movieVoteAverage}</Rating>
                     </RatingContainer>
                 </CardInfoContainer>
             </CardContainer>
