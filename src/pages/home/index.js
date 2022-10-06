@@ -3,20 +3,29 @@ import Header from '../../components/header'
 import MovieCardsContainer from '../../components/movie-cards-container'
 import MovieDetails from '../../components/movie-details'
 import logo from '../../logo.svg'
-import { moviesURL, apiKey, language, genreURL } from '../../services/api'
+import { moviesURL, apiKey, language, genreURL, searchURL } from '../../services/api'
 
 export default function Home() {
     const [openDetails, setOpenDetails] = useState(false);
 
-    const [topMovies, setTopMovies] = useState([])
+    const [movies, setMovies] = useState([])
+    //console.log(movies)
+
+    const [filteredMovies, setFilteredMovies] = useState([])
 
     const [genres, setGenres] = useState([])
 
-    const getTopRatedMovies = async (url) => {
+    const [genreId, setGenreId] = useState('0')
+
+    const [search, setSearch] = useState('')
+
+    //console.log(search)
+
+    const getMovies = async (url) => {
         const res = await fetch(url)
         const data = await res.json()
         
-        setTopMovies(data.results)
+        setMovies(data.results)
     }
     
     const getGenres = async (url) => {
@@ -27,20 +36,35 @@ export default function Home() {
         console.log(data.genres)
     }
 
+    const getMoviesBySearch = async (url) => {
+        const res = await fetch(url)
+        const data = await res.json()
+        
+        setMovies(data.results)
+    }
+
     useEffect(() => {
         const topRatedUrl = `${moviesURL}popular?${apiKey}${language}`
         const genresUrl = `${genreURL}${apiKey}${language}`
 
-        getTopRatedMovies(topRatedUrl)
+        getMovies(topRatedUrl)
         getGenres(genresUrl)
-        console.log(topMovies)
     }, [])
+
+    useEffect(() => {
+        const searchUrl = search !== '' ?`${searchURL}${apiKey}${language}&query=${search}` : `${moviesURL}popular?${apiKey}${language}`
+
+        getMoviesBySearch(searchUrl)
+        setGenreId('0')
+    }, [search])
 
     return (
         <>
            <MovieDetails openDetails={openDetails} />
-           <Header /> 
-           <MovieCardsContainer moviesData={topMovies} genres={genres} setOpenDetails={setOpenDetails} />
+
+           <Header genres={genres} setSearch={setSearch} search={search} setMovies={setMovies} moviesData={movies} setGenreId={setGenreId} genreId={genreId} setFilteredMovies={setFilteredMovies} />
+            
+           <MovieCardsContainer moviesData={movies} genres={genres} setOpenDetails={setOpenDetails} filteredMovies={filteredMovies} genreId={genreId} />
         </>
     )
 }

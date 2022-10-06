@@ -3,9 +3,7 @@ import star from '../../assets/icons/star.svg'
 import { imgURL } from "../../services/api";
 import { useState } from 'react';
 
-export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPath, setOpenDetails, movieGenreIds, genres }) {
-    //const [genreNames, setGenreNames] = useState([])
-    
+export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPath, setOpenDetails, movieGenreIds, genres }) {    
     const genresArr = [];
 
     movieGenreIds.map(movieGenre => {
@@ -13,8 +11,6 @@ export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPat
         const teste = genres?.filter(genre => genre.id === movieGenre )
         genresArr.push(teste[0]?.name)
     })
-
-    //console.log(genresArr)
     
     
     return (
