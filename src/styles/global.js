@@ -31,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         background: var(--backgroundColor);
         color: var(--whiteColor);
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
         overflow-x: hidden;
     }
 `;

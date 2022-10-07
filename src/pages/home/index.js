@@ -6,10 +6,10 @@ import logo from '../../logo.svg'
 import { moviesURL, apiKey, language, genreURL, searchURL } from '../../services/api'
 
 export default function Home() {
-    const [openDetails, setOpenDetails] = useState(false);
+    
 
     const [movies, setMovies] = useState([])
-    //console.log(movies)
+    console.log(movies)
 
     const [filteredMovies, setFilteredMovies] = useState([])
 
@@ -60,11 +60,9 @@ export default function Home() {
 
     return (
         <>
-           <MovieDetails openDetails={openDetails} />
-
            <Header genres={genres} setSearch={setSearch} search={search} setMovies={setMovies} moviesData={movies} setGenreId={setGenreId} genreId={genreId} setFilteredMovies={setFilteredMovies} />
             
-           <MovieCardsContainer moviesData={movies} genres={genres} setOpenDetails={setOpenDetails} filteredMovies={filteredMovies} genreId={genreId} />
+           <MovieCardsContainer moviesData={movies} genres={genres} filteredMovies={filteredMovies} genreId={genreId} />
         </>
     )
 }

@@ -5,7 +5,7 @@ export const DropdownContainer = styled.div``;
 export const Select = styled.select`
     height: 100%;
     //appearance: none;
-    padding: 0.99rem;
+    padding: 0.98rem;
     background: var(--darkColor);
     border: none;
     color: var(--whiteColor);

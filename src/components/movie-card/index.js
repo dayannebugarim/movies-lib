@@ -1,9 +1,13 @@
 import { CardContainer, CardInfoContainer, MovieTitle, MovieGenre, RatingContainer, Star, Rating } from './styles'
+import MovieDetails from '../movie-details';
 import star from '../../assets/icons/star.svg'
+import sorry from '../../assets/empty-states/sorry.svg'
 import { imgURL } from "../../services/api";
 import { useState } from 'react';
 
-export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPath, setOpenDetails, movieGenreIds, genres }) {    
+export default function MovieCard({ id, key, movieTitle, movieVoteAverage, moviePosterPath, movieGenreIds, genres, movieReleaseDate, movieOverview }) {    
+    const [openDetails, setOpenDetails] = useState(false);
+
     const genresArr = [];
 
     movieGenreIds.map(movieGenre => {
@@ -15,7 +19,7 @@ export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPat
     
     return (
         <>
-            <CardContainer onClick={() => setOpenDetails(true)} posterURL={imgURL + moviePosterPath}>
+            <CardContainer id={id} key={key} onClick={() => setOpenDetails(true)} posterURL={moviePosterPath ? imgURL + moviePosterPath : sorry}>
                 <CardInfoContainer>
                     <MovieTitle>
                         {movieTitle}
@@ -29,6 +33,8 @@ export default function MovieCard({ movieTitle, movieVoteAverage, moviePosterPat
                     </RatingContainer>
                 </CardInfoContainer>
             </CardContainer>
+
+            <MovieDetails openDetails={openDetails} setOpenDetails={setOpenDetails} movieReleaseDate={movieReleaseDate} movieOverview={movieOverview} movieTitle={movieTitle} movieVoteAverage={movieVoteAverage} moviePosterPath={moviePosterPath} genres={genres} movieGenreIds={movieGenreIds} />
         </>
     )
 }
