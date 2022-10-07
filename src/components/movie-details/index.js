@@ -12,7 +12,7 @@ export default function MovieDetails({ openDetails, setOpenDetails, movieId, key
         genresArr.push(teste[0]?.name)
     })
 
-    const releaseYear = movieReleaseDate.split('-')[0]
+    const releaseYear = movieReleaseDate?.split('-')[0]
 
     return (
         <>

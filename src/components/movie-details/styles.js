@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const DarkerBackground = styled.div`
     display: ${props => props.open ? 'block' : 'none'};
-
+    opacity: ${props => props.open ? 1 : 0};
+    transition: opacity 1s linear;
     position: fixed;
     top: 0;
     left: 0;
